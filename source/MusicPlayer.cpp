@@ -77,39 +77,39 @@ void MusicPlayer::playNextWithNormal()
   }
 }
 
-// void MusicPlayer::playNextWithShuffle()
-// {
-//   try
-//   {
-//     Song nextSong = m_shuffle.getNextSong();
-//     m_queue.playSong(nextSong);
-//   }
-//   catch (const std::exception &e)
-//   {
-//     std::cerr << " [LOI] Phat bai hat khi Shuffle\n";
-//     std::cerr << e.what() << '\n';
-//   }
-// }
+void MusicPlayer::playNextWithShuffle()
+{
+  try
+  {
+    Song nextSong = m_shuffle.getNextSong();
+    m_queue.playSong(nextSong);
+  }
+  catch (const std::exception &e)
+  {
+    std::cerr << " [LOI] Phat bai hat khi Shuffle\n";
+    std::cerr << e.what() << '\n';
+  }
+}
 
-// bool MusicPlayer::toggleShuffle()
-// {
-//   m_isShuffleEnable = !m_isShuffleEnable;
+bool MusicPlayer::toggleShuffle()
+{
+  m_isShuffleEnable = !m_isShuffleEnable;
 
-//   if (m_isShuffleEnable)
-//   {
-//     std::list<Song> tempList;
-//     if (!m_queue.isEmpty())
-//     {
-//       for (const Song &s : m_queue)
-//       {
-//         tempList.push_back(s);
-//       }
-//     }
-//     else
-//     {
-//       std::cout << "=> Da tat Shuffle\n";
-//     }
-//     m_shuffle.startShuffle(tempList);
-//   }
-//   return m_isShuffleEnable;
-// }
+  if (m_isShuffleEnable)
+  {
+    std::list<Song> tempList;
+    if (!m_queue.isEmpty())
+    {
+      for (const Song &s : m_queue)
+      {
+        tempList.push_back(s);
+      }
+    }
+    else
+    {
+      std::cout << "=> Da tat Shuffle\n";
+    }
+    m_shuffle.startShuffle(tempList);
+  }
+  return m_isShuffleEnable;
+}

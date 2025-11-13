@@ -51,9 +51,9 @@ void MusicController::run()
     case 12:
       handleRemoveSongOutPlayback();
       break;
-    // case 13:
-    //   handleShufflePlaylist();
-    //   break;
+    case 13:
+      handleShufflePlaylist();
+      break;
     case 0:
       std::cout << " > Tam biet!" << std::endl;
       break;
@@ -204,7 +204,8 @@ void MusicController::handleRemoveSongOutPlayback()
   handleDisplayQueue();
 }
 
-// void MusicController::handleShufflePlaylist()
-// {
-//   bool isEnable = m_player.toggleShuffle();
-// }
+void MusicController::handleShufflePlaylist()
+{
+  bool isEnable = m_player.toggleShuffle();
+  handleDisplayQueue();
+}

@@ -1,6 +1,6 @@
 #include "../include/ShuffleManager.h"
 
-ShuffleManager::ShuffleManager() : m_currentIndex(0), m_shuffleSongs(std::random_device{}()) {}
+ShuffleManager::ShuffleManager() : m_currentIndex(0), m_randomGenerator(std::random_device{}()) {}
 
 void ShuffleManager::shuffleSongs()
 {

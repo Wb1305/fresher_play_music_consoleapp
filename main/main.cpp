@@ -4,6 +4,7 @@
 #include "../include/MusicPlayer.h"
 #include "../include/PlaybackQueue.h"
 #include "../view/ConsoleView.h"
+#include "../include/ShuffleManager.h"
 
 #include <iostream>
 
@@ -33,5 +34,19 @@ int main()
 
   // view.displayQueue(playBack);
 
+  // test shuffleManager
+  // ShuffleManager shuffle;
+  // std::list<Song> list;
+  // for (const Song &s : listSongs)
+  // {
+  //   list.push_back(s);
+  // }
+  // shuffle.startShuffle(list);
+  // std::vector<Song> listShuffled = shuffle.getShuffledList();
+
+  // for (const Song &s : listShuffled)
+  // {
+  //   std::cout << "Song: " << s.m_title << std::endl;
+  // }
   return 0;
 }

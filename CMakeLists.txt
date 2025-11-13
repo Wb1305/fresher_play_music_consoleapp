@@ -15,7 +15,7 @@ add_executable(
   source/PlaybackQueue.cpp
   source/Algorithms.cpp
   source/PlaybackHistory.cpp
-  # source/ShuffleManager.cpp
+  source/ShuffleManager.cpp
   
   view/ConsoleView.cpp
 
