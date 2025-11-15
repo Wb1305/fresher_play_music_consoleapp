@@ -14,10 +14,8 @@ private:
   MusicPlayer m_player;
   ConsoleView m_view;
   // --- Hàm Setup ---
-  /**
-   *Nạp dữ liệu giả (Mock Data)
-   */
   void loadMockData();
+  void loadDataFromFile(const std::string &filePath);
   // --- Hàm xử lý cho từng lựa chọn menu ---
   void handleDisplayLibrary();
   void handleFindByID();
@@ -32,4 +30,5 @@ private:
   void handleAddSongInPlayback();
   void handleRemoveSongOutPlayback();
   void handleShufflePlaylist();
+  void handleDisplayShufflelist();
 };

@@ -23,4 +23,5 @@ public:
   Song getNextSong();
   const std::vector<Song> &getShuffledList() const;
   bool isEnableShuffle() const;
+  void checkDuplicate(const std::list<Song> &originalSong);
 };

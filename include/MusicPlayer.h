@@ -14,10 +14,12 @@ public:
   void selectAndPlaySong(int songID);
   void playNext(); // phat bai tiep theo trong hang doi
   bool toggleShuffle();
+  bool statusShuffleEnable();
 
   const MusicLibrary &getLibraryObject() const;
   PlaybackQueue &getPlaybackObject();
   PlaybackHistory &getPlaybackHistory();
+  const ShuffleManager &getShuffle() const;
 
 private:
   void playNextWithNormal();

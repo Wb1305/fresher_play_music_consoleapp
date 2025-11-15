@@ -5,7 +5,8 @@ Song PlaybackHistory::playPreviousSong()
 {
   if (isEmpty())
   {
-    throw std::runtime_error("Lich su dang rong");
+    // throw std::runtime_error("Lich su dang rong");
+    std::cout << "Lich su dang rong";
   }
   Song song = m_playbackHistory.top();
   m_playbackHistory.pop();

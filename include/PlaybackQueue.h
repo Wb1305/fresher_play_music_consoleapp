@@ -12,6 +12,7 @@ private:
 
 public:
   PlaybackQueue();
+  bool isDuplicate() const;
   bool isEmpty() const;
   int size();
   void addSong(const Song &song);

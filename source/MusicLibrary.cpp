@@ -12,6 +12,7 @@ void MusicLibrary::loadLibrary(const std::vector<Song> &songs)
   m_songIndexByID.clear();
   m_songIndexByTitle.clear();
   m_artistIndex.clear();
+  m_albumIndex.clear();
 
   // gan lai danh sach
   for (size_t i = 0; i < m_songs.size(); ++i)
@@ -20,6 +21,7 @@ void MusicLibrary::loadLibrary(const std::vector<Song> &songs)
     m_songIndexByID[songPtr->m_id] = songPtr;
     m_songIndexByTitle[songPtr->m_title] = songPtr;
     m_artistIndex[songPtr->m_artist].push_back(songPtr);
+    m_albumIndex[songPtr->m_album].push_back(songPtr);
   }
 };
 
@@ -52,6 +54,16 @@ std::vector<Song *> MusicLibrary::findSongsByArtist(const std::string &artist) c
 {
   auto it = m_artistIndex.find(artist);
   if (it != m_artistIndex.end())
+  {
+    return it->second;
+  }
+  return {};
+}
+
+std::vector<Song *> MusicLibrary::findSongsByAlbum(const std::string &album) const
+{
+  auto it = m_albumIndex.find(album);
+  if (it != m_albumIndex.end())
   {
     return it->second;
   }

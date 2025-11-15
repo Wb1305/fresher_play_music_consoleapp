@@ -1,10 +1,6 @@
 #include "../include/PlaybackQueue.h"
 
-PlaybackQueue::PlaybackQueue()
-{
-  // trỏ tới sau phần tử cuối cùng
-  m_current_song = m_playback_queue.end();
-};
+PlaybackQueue::PlaybackQueue() : m_current_song(m_playback_queue.end()) {};
 
 bool PlaybackQueue::isEmpty() const
 {
@@ -64,8 +60,7 @@ Song PlaybackQueue::getCurrentSong()
 {
   if (isEmpty())
   {
-    // throw std::runtime_error("Hang doi rong");
-    std::cout << "Khong co bai nao trong hang doi\n";
+    throw std::runtime_error("Hang doi rong, khong co bai hat hien tai!");
   }
   if (m_current_song == m_playback_queue.end())
   {
@@ -80,6 +75,7 @@ void PlaybackQueue::playNext()
   {
     // throw std::runtime_error("Hang doi rong");
     std::cout << "Hang doi dang trong, khong the chuyen bai\n";
+    return;
   }
   ++m_current_song;
   if (m_current_song == m_playback_queue.end())
@@ -90,7 +86,7 @@ void PlaybackQueue::playNext()
 
 void PlaybackQueue::playSong(const Song &song)
 {
-  std::cout << "[Dang phat] " << song.m_title << std::endl;
+  std::cout << "[Dang phat] [" << song.m_id << "] " << song.m_title << " - " << song.m_artist << " - " << song.m_album << std::endl;
   m_playback_queue.push_back(song);
   m_current_song = --(m_playback_queue.end());
 };

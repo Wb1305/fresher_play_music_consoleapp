@@ -1,7 +1,7 @@
 
 #include "../include/MusicPlayer.h"
 
-MusicPlayer::MusicPlayer() /*:MusicPlayer::MusicPlayer()*/ {}
+MusicPlayer::MusicPlayer() : m_isShuffleEnable(false) {}
 
 void MusicPlayer::load(const std::vector<Song> &songs)
 {
@@ -29,7 +29,7 @@ void MusicPlayer::selectAndPlaySong(int songID)
   if (songToPlay == nullptr)
   {
     // throw std::runtime_error("songToPlay la nullptr");
-    std::cout << "songToPlay la nullptr";
+    std::cout << " => Bai hat khong hop le";
   }
   if (!m_queue.isEmpty())
   {
@@ -45,10 +45,11 @@ void MusicPlayer::playNext()
     // throw std::runtime_error("=> Hang doi dang trong, khong the phat bai hat tiep theo");
     std::cout << "=> Hang doi dang trong, khong the phat bai hat tiep theo\n";
   }
-  // if (m_isShuffleEnable)
-  // {
-  //   playNextWithShuffle();
-  // }
+  if (m_isShuffleEnable)
+  {
+    playNextWithShuffle();
+    return;
+  }
   playNextWithNormal();
 }
 
@@ -59,17 +60,25 @@ void MusicPlayer::playNextWithNormal()
   {
     Song currSong = m_queue.getCurrentSong();
     m_history.addSong(currSong);
-    std::cout << currSong.m_title << std::endl;
+    m_queue.removeSong(currSong.m_id);
     std::cout << "=> Da day " << currSong.m_title << " vao History\n";
   }
   catch (const std::exception &e)
   {
-    std::cerr << "LOI: Khi day currentSong vao history " << e.what() << '\n';
+    std::cerr << "LOI: Khi day them bai hat hien tai vao history " << e.what() << '\n';
   }
   // play
   try
   {
-    m_queue.playNext();
+    // m_queue.playNext();
+    if (!m_queue.isEmpty())
+    {
+      std::cout << " [Dang phat] [" << m_queue.getCurrentSong().m_id << "] " << m_queue.getCurrentSong().m_title << " - " << m_queue.getCurrentSong().m_artist << " - " << m_queue.getCurrentSong().m_album << std::endl;
+    }
+    else
+    {
+      std::cout << " => Da phat het bai hat trong hang doi\n";
+    }
   }
   catch (const std::exception &e)
   {
@@ -107,9 +116,19 @@ bool MusicPlayer::toggleShuffle()
     }
     else
     {
-      std::cout << "=> Da tat Shuffle\n";
+      // std::cout << "=> Da tat Shuffle\n";
     }
     m_shuffle.startShuffle(tempList);
   }
+  return m_isShuffleEnable;
+}
+
+const ShuffleManager &MusicPlayer::getShuffle() const
+{
+  return m_shuffle;
+}
+
+bool MusicPlayer::statusShuffleEnable()
+{
   return m_isShuffleEnable;
 }
